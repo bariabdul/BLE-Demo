@@ -38,7 +38,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        loadingView.isHidden = true
+        //loadingView.isHidden = true
         let serviceUUID = CBUUID(string: "ec00")
         var peripheral: Peripheral?
         let dataCharacteristicUUID = CBUUID(string: "ec00")
@@ -108,7 +108,48 @@ class ViewController: UIViewController {
                 return service.discoverCharacteristics([dataCharacteristicUUID])
         }
         
+        let dataFuture = discoveryFuture.flatMap { (_) -> Future<Void> in
+            guard let discoveredPeripheral = peripheral else { throw AppError.unknown }
+            guard let dataCharacteristic = discoveredPeripheral.services(withUUID: serviceUUID)?.first?.characteristics(withUUID: dataCharacteristicUUID)?.first else { throw AppError.dataCharacteristicNotFound }
+            self.dataCharacteristic = dataCharacteristic
+            
+            DispatchQueue.main.async {
+                self.connectionStatusLabel.text = "Discovered characteristic \(dataCharacteristic.uuid.uuidString). That's awesome!"
+            }
+            
+            DispatchQueue.main.async {
+                self.loadingView.isHidden = true
+                self.characteristicView.isHidden = false
+            }
+            self.read()
+            
+            return dataCharacteristic.startNotifying()
+            }.flatMap { (_) -> FutureStream<Data?> in
+                guard let discoveredPeripheral = peripheral else { throw AppError.unknown }
+                guard let characteristic = discoveredPeripheral.services(withUUID: serviceUUID)?.first?.characteristics(withUUID: dataCharacteristicUUID)?.first else { throw AppError.dataCharacteristicNotFound }
+                
+                return characteristic.receiveNotificationUpdates(capacity: 10)
+        }
         
+        dataFuture.onSuccess { (data) in
+            let s = String(data: data!, encoding: .utf8)
+            DispatchQueue.main.async {
+                self.notifyLabel.text = "Notified value is \(String(describing: s))"
+            }
+        }
+        
+        dataFuture.onFailure { (error) in
+            switch error {
+            case PeripheralError.disconnected:
+                peripheral?.reconnect()
+            case AppError.serviceNotFound:
+                break
+            case AppError.dataCharacteristicNotFound:
+                break
+            default:
+                break
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -117,11 +158,38 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onWritePressed(_ sender: Any) {
-        
+        self.write()
     }
     
     @IBAction func onRefreshPressed(_ sender: Any) {
+        self.read()
+    }
+    
+    func read() {
+        let readFuture = self.dataCharacteristic?.read(timeout: 5)
+        readFuture?.onSuccess(completion: { (_) in
+            let s = String(data: (self.dataCharacteristic?.dataValue)!, encoding: .utf8)
+            
+            DispatchQueue.main.async {
+                self.readValueLabel.text = "Read value is \(String(describing: s))"
+            }
+        })
+        readFuture?.onFailure(completion: { (_) in
+            self.readValueLabel.text = "Error while reading"
+        })
+    }
+    
+    func write() {
+        self.valueToWriteTextField.resignFirstResponder()
+        guard let text = self.valueToWriteTextField.text else { return }
         
+        let writeFuture = self.dataCharacteristic?.write(data: text.data(using: .utf8)!)
+        writeFuture?.onSuccess(completion: { (_) in
+            print("Write Success")
+        })
+        writeFuture?.onFailure(completion: { (e) in
+            print("Write Failure")
+        })
     }
 }
 
