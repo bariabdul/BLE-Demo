@@ -12,7 +12,42 @@
 		28CC48EF2100E79200F8A572 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28CC48ED2100E79200F8A572 /* Main.storyboard */; };
 		28CC48F12100E79400F8A572 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28CC48F02100E79400F8A572 /* Assets.xcassets */; };
 		28CC48F42100E79400F8A572 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28CC48F22100E79400F8A572 /* LaunchScreen.storyboard */; };
+		28CC49042100EC4C00F8A572 /* BlueCapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28CC49032100EBD200F8A572 /* BlueCapKit.framework */; };
+		28CC49052100EC4C00F8A572 /* BlueCapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 28CC49032100EBD200F8A572 /* BlueCapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		28CC490A2100EC7B00F8A572 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28CC49092100EC7B00F8A572 /* CoreLocation.framework */; };
+		28CC490C2100EC8100F8A572 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28CC490B2100EC8100F8A572 /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		28CC49022100EBD200F8A572 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28CC48FE2100EBD200F8A572 /* BlueCapKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0551208219F5506000ED3B74;
+			remoteInfo = BlueCapKit;
+		};
+		28CC49062100EC4C00F8A572 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28CC48FE2100EBD200F8A572 /* BlueCapKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0551208119F5506000ED3B74;
+			remoteInfo = BlueCapKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		28CC49082100EC4C00F8A572 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				28CC49052100EC4C00F8A572 /* BlueCapKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		28CC48E62100E79200F8A572 /* Ble-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ble-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,6 +57,10 @@
 		28CC48F02100E79400F8A572 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		28CC48F32100E79400F8A572 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		28CC48F52100E79400F8A572 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28CC48FC2100EB4800F8A572 /* BlueCap-master */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "BlueCap-master"; sourceTree = "<group>"; };
+		28CC48FE2100EBD200F8A572 /* BlueCapKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BlueCapKit.xcodeproj; path = "BlueCap-master/BlueCapKit.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		28CC49092100EC7B00F8A572 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		28CC490B2100EC8100F8A572 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +68,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28CC490C2100EC8100F8A572 /* CoreBluetooth.framework in Frameworks */,
+				28CC490A2100EC7B00F8A572 /* CoreLocation.framework in Frameworks */,
+				28CC49042100EC4C00F8A572 /* BlueCapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +82,7 @@
 			children = (
 				28CC48E82100E79200F8A572 /* Ble-Demo */,
 				28CC48E72100E79200F8A572 /* Products */,
+				28CC48FB2100EB4800F8A572 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,9 +102,28 @@
 				28CC48ED2100E79200F8A572 /* Main.storyboard */,
 				28CC48F02100E79400F8A572 /* Assets.xcassets */,
 				28CC48F22100E79400F8A572 /* LaunchScreen.storyboard */,
+				28CC48FE2100EBD200F8A572 /* BlueCapKit.xcodeproj */,
 				28CC48F52100E79400F8A572 /* Info.plist */,
 			);
 			path = "Ble-Demo";
+			sourceTree = "<group>";
+		};
+		28CC48FB2100EB4800F8A572 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				28CC490B2100EC8100F8A572 /* CoreBluetooth.framework */,
+				28CC49092100EC7B00F8A572 /* CoreLocation.framework */,
+				28CC48FC2100EB4800F8A572 /* BlueCap-master */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		28CC48FF2100EBD200F8A572 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				28CC49032100EBD200F8A572 /* BlueCapKit.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,10 +136,12 @@
 				28CC48E22100E79200F8A572 /* Sources */,
 				28CC48E32100E79200F8A572 /* Frameworks */,
 				28CC48E42100E79200F8A572 /* Resources */,
+				28CC49082100EC4C00F8A572 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				28CC49072100EC4C00F8A572 /* PBXTargetDependency */,
 			);
 			name = "Ble-Demo";
 			productName = "Ble-Demo";
@@ -110,12 +174,28 @@
 			mainGroup = 28CC48DD2100E79200F8A572;
 			productRefGroup = 28CC48E72100E79200F8A572 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 28CC48FF2100EBD200F8A572 /* Products */;
+					ProjectRef = 28CC48FE2100EBD200F8A572 /* BlueCapKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				28CC48E52100E79200F8A572 /* Ble-Demo */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		28CC49032100EBD200F8A572 /* BlueCapKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BlueCapKit.framework;
+			remoteRef = 28CC49022100EBD200F8A572 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		28CC48E42100E79200F8A572 /* Resources */ = {
@@ -141,6 +221,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		28CC49072100EC4C00F8A572 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BlueCapKit;
+			targetProxy = 28CC49062100EC4C00F8A572 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		28CC48ED2100E79200F8A572 /* Main.storyboard */ = {
@@ -279,6 +367,7 @@
 		28CC48F92100E79400F8A572 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 273522GWR3;
@@ -297,6 +386,7 @@
 		28CC48FA2100E79400F8A572 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 273522GWR3;
